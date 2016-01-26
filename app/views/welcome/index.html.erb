@@ -1,0 +1,13 @@
+<h1>Welcome to Sam's Travel Site</h1>
+<p>Ipsum lorem maxim travel situm</p>
+
+<ul>
+	<% @destinations.each do |item| %>
+		<li> <%= item %> </li>
+ 	<% end %>
+</ul>
+
+	<% @destination_pics.each do |alt, pic| %>
+	<%= image_tag pic, alt: alt, width: "300", height: "200" %>
+	
+<% end %>
