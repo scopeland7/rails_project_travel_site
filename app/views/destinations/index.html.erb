@@ -1,31 +1,31 @@
-<p id="notice"><%= notice %></p>
+<div class= "container">  
+  <p id="notice"><%= notice %></p>
 
-<h1>Listing Destinations</h1>
+  <h1>Listing Destinations</h1>
+  <%= link_to 'New Destination', new_destination_path %><span></span>
 
-<table>
-  <thead>
-    <tr>
-      <th>City</th>
-      <th>Country</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <ul class="nav nav-pills" role="tablist">
+    
+    <li><%= link_to "All Destinations", destinations_path %></li>
 
-  <tbody>
-    <% @destinations.each do |destination| %>
-      <tr>
-        <td><%= destination.city %></td>
-        <td><%= destination.country %></td>
-        <td><%= destination.description %></td>
-        <td><%= link_to 'Show', destination %></td>
-        <td><%= link_to 'Edit', edit_destination_path(destination) %></td>
-        <td><%= link_to 'Destroy', destination, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <% @my_countries.each do |country| %>
+      <li><%= link_to "#{country.country}", controller: "destinations", country: "#{country.country}" %></li>
     <% end %>
-  </tbody>
-</table>
 
-<br>
+  </ul>
 
-<%= link_to 'New Destination', new_destination_path %>
+<div class="row">
+  <% @destinations.each do |destination| %>
+    <div class="col-md-4">   
+      <div class="well">
+        <p><%= "#{destination.city}, #{destination.country}" %></p>
+        <p>Native Species: <%= "#{destination.natives}" %></p>
+        <p><%= destination.description %>
+        <p><%= link_to 'Show', destination, class: "btn btn-primary" %>
+              <%= link_to 'Edit', edit_destination_path(destination), class: "btn btn-success" %>
+              <%= link_to 'Destroy', destination, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %></p>
+      </div>
+    </div>
+  <% end %>
+</div>
+
